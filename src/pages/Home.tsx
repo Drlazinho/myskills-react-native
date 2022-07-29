@@ -15,6 +15,7 @@ export function Home() {
   const [mySkills, setMySkills] = useState<SkillData[]>([]);
   const [gretting, setGretting] = useState('');
 
+  // Função de adicionar
   function handleAddNewSkill() {
     const data = {
       id: String(new Date().getTime()),
@@ -23,6 +24,13 @@ export function Home() {
 
 
     setMySkills(oldState => [...oldState, data]);
+  }
+
+  // Função de Remover
+  function handleRemoveSkill(id: string) {
+    setMySkills(oldState => oldState.filter(
+      skill => skill.id !== id
+    ))
   }
   
   useEffect(() => {
@@ -52,7 +60,7 @@ export function Home() {
       onChangeText={setNewSkill}
       />
 
-      <Button onPress={handleAddNewSkill}/>
+      <Button title="Add" onPress={handleAddNewSkill}/>
 
       <Text style={[styles.title, {marginTop: 40}]}>
         My Skills
@@ -63,7 +71,10 @@ export function Home() {
         data={mySkills}
         keyExtractor={item => item.id}
         renderItem={({item}) => (
-            <SkillCard skill={item.name}/>
+            <SkillCard skill={item.name}
+              onPress={() => handleRemoveSkill(item.id)}
+            />
+            
         )}
       >
       </FlatList>

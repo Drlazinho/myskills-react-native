@@ -5,6 +5,7 @@
 * Aplicação de useState e useEffect.
 * FlatList, props.
 * Adicionando Typescript
+
 ## Anotações
 
 <details>
@@ -76,4 +77,52 @@ Com o Flatlist o código fica mais sucinto
       </FlatList>
 ~~~~
 </details>
+<details>
+<summary markdonw="span">Tipando componentes com Typescript</summary>
 
+No React Native podemos usar as proprias Interface que ela oferece. Como por exemplo o `TouchableOpacityProps` que já vem com as props prontas
+
+~~~~reactjs
+//Usando a interface da biblioteca
+type ButtonProps = TouchableOpacityProps;
+~~~~
+
+Se quer adicionar uma nova props que não vem da biblioteca, podemos usar uma interface ao invês do type, extendendo da interface original.
+
+~~~~reactjs
+//Adicionando novas props
+interface ButtonProps extends TouchableOpacityProps {
+  title: string,
+};
+~~~~
+</details>
+<details>
+<summary markdonw="span">
+Função de Remover
+</summary>
+Criado uma função que remove pelo ID. Pegamos o oldState e usamos o filter para recuperar somente os IDs diferente daquele que foi escolhido
+
+~~~~reactjs
+  function handleRemoveSkill(id: string) {
+    setMySkills(oldState => oldState.filter(
+      skill => skill.id !== id
+    ))
+  }
+~~~~
+
+Como essa função usa um parametro, ela é passada dessa forma. No componente SkillCard
+
+~~~~~reactjs
+      <FlatList 
+        data={mySkills}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => (
+            <SkillCard skill={item.name}
+              onPress={() => handleRemoveSkill(item.id)}
+            />
+            
+        )}
+      >
+      </FlatList>
+~~~~~
+</details>
