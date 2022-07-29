@@ -1,6 +1,11 @@
 # Aplicação em React Native - MySkills
 
-# Anotações
+## Desenvolvimento
+* Estilização e componentização.
+* Aplicação de useState e useEffect.
+* FlatList, props.
+* Adicionando Typescript
+## Anotações
 
 <details>
 <summary markdonw="span">Estilo em React Native</summary>
@@ -71,5 +76,4 @@ Com o Flatlist o código fica mais sucinto
       </FlatList>
 ~~~~
 </details>
-Aplicação de useState e useEffect
 
